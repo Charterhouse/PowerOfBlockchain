@@ -2,7 +2,7 @@ The power of BlockChain
 =======================
 *Session Proposal for NextBuild 2017*
 
-To really show you the power of BlockChain we are going to demonstrate how you can easily make an application that can be trusted by anyone. We will create a game where *cheating is impossible*. The game is a live guessing game. Anyone can set a challenge consisting of a question, its answer, and prize money[1]. The first person to give the correct answer wins that challenge, and takes away the prize money.
+To really show you the power of BlockChain we are going to demonstrate how you can easily make an application that can be trusted by anyone. We will create a game where *cheating is impossible*. The game is a live guessing game. Anyone can set a challenge consisting of a question, its answer, and prize money [1]. The first person to give the correct answer wins that challenge, and takes away the prize money.
 
 The game consists of a web based UI, and a smart contract on the Ethereum blockchain where you would normally find the backend. This smart contract ensures that *not even us* can cheat the game.
 
