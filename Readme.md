@@ -10,12 +10,12 @@ We won’t bore you with powerpoint bullet lists from hell, nor will we simply u
 
 We intend for you to walk away from this session not only knowing how to start developing a Blockchain app, but also wanting to!
 
-Running the Code
-----------------
+Running ÐQuestions
+------------------
 
 **Prerequisite: you need a working Node.js environment.**
 
-If you want to run this app, after cloning this repo please do the following:
+If you want to run this game, after cloning this repo please do the following:
 
 1. Run `yarn devsetup` on the root level
 2. In a separate terminal, in the folder `src/app-contracts` run `yarn run testrpc` and keep it running.<sup>3</sup>
