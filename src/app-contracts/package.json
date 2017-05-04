@@ -1,0 +1,30 @@
+{
+  "name": "app-contracts",
+  "version": "0.1.0",
+  "description": "Contracts for 500Questions",
+  "main": "index.js",
+  "repository": "https://github.com/Charterhouse/NextBuild2017.git",
+  "contributors": [
+    "Stefan van den Oord",
+    "Mark Spanbroek"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "child-process-promise": "^2.2.1",
+    "ethereumjs-testrpc": "^3.0.5",
+    "fs-extra-promise": "^1.0.1",
+    "is-port-reachable": "^2.0.0",
+    "truffle": "^3.2.1"
+  },
+  "scripts": {
+    "install": "yarn run truffle compile",
+    "test": "yarn run truffle test",
+    "deploy-ropsten": "node deploy/ropsten.js"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "dependencies": {
+    "chai-as-promised": "^6.0.0"
+  }
+}
