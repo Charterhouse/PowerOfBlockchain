@@ -1,6 +1,7 @@
 The Power of Blockchain
 =======================
-*Session Proposal for NextBuild 2017*
+*Session Proposal for [NextBuild 2017](http://nextbuild.nl)*.<br />
+*Update April 6, 2017: Our session was accepted!*
 
 To really show you the power of Blockchain we are going to demonstrate how you can easily make an application that can be trusted by anyone. We will create a game where *cheating is impossible*. The game is a live guessing game. Anyone can set a challenge consisting of a question, its answer, and prize money<sup>1</sup>. The first person to give the correct answer wins that challenge, and takes away the prize money.
 
