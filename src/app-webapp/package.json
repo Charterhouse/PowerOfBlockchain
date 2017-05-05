@@ -23,6 +23,7 @@
     "react-bootstrap": "^0.31.0",
     "react-bootstrap-button-loader": "^1.0.7",
     "react-dom": "^15.4.2",
+    "react-router-dom": "^4.1.1",
     "replace": "^0.3.0",
     "truffle-contract": "^2.0.0",
     "url-loader": "^0.5.8"

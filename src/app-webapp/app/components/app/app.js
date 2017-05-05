@@ -1,17 +1,16 @@
 import React from 'react'
 import { Col } from 'react-bootstrap'
+import { HashRouter, Route } from 'react-router-dom'
 import Home from '../home'
-
-// Define your routing setup in this class for correct hot-module-reloading.
 
 class App extends React.Component {
   render () {
-    return <div>
+    return <HashRouter>
       <Col sm={10} smOffset={1}>
         <h1>ÐQuestions</h1>
-        <Home />
+        <Route path='/' exact component={Home} />
       </Col>
-    </div>
+    </HashRouter>
   }
 }
 
