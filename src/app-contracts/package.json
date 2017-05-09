@@ -19,7 +19,9 @@
   "scripts": {
     "install": "yarn run truffle compile",
     "test": "yarn run truffle test",
-    "deploy-ropsten": "node deploy/ropsten.js"
+    "deploy-ropsten": "node deploy/ropsten.js",
+    "rpc": "yarn run testrpc -- -m 'blue clump mutual physical hair vital code indoor minor tongue neglect seed'",
+    "rpc-testnet": "yarn run testrpc -- -f http://localhost:8546 -m 'blue clump mutual physical hair vital code indoor minor tongue neglect seed'"
   },
   "engines": {
     "node": ">=7.6.0"
