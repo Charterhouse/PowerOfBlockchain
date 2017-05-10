@@ -28,6 +28,6 @@ Now browse to http://localhost:8080 and you should see the game interface.
 <hr />
 <sup>1</sup> The money is in fact just a number of crypto-tokens, which can represent any physical good(ie)s. So if you're lucky we may actually provide some of those goodies...
 
-<sup>2</sup> ÐQuestions, pronounced "five-hundred questions", is the distributed version of the game 500 Questions. Please not that 'Ð' is used generally for ÐApps (distributed apps), and that 'D' is the roman numeral for 500. Clever, huh?!
+<sup>2</sup> ÐQuestions, pronounced "five-hundred questions", is the decentralized version of the game 500 Questions. Please not that 'Ð' is used generally for ÐApps (decentralized apps), and that 'D' is the roman numeral for 500. Clever, huh?!
 
 <sup>3</sup> Unfortunately, TestRPC crashes now and then. Just restart it when it does.
