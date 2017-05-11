@@ -1,4 +1,5 @@
-module.exports = {
+
+let truffleOptions = {
   networks: {
     ropsten: {
       host: 'localhost',
@@ -13,3 +14,11 @@ module.exports = {
     }
   }
 }
+
+if (process.env.IDE === 'IntellIJ') {
+  truffleOptions['mocha'] = {
+    reporter: '/Users/nlv19703/Library/Application Support/IntelliJIdea2017.1/NodeJS/js/mocha-intellij/lib/mochaIntellijReporter.js'
+  }
+}
+
+module.exports = truffleOptions
