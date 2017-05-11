@@ -1,4 +1,3 @@
-
 let truffleOptions = {
   networks: {
     ropsten: {
@@ -15,9 +14,10 @@ let truffleOptions = {
   }
 }
 
-if (process.env.IDE === 'IntellIJ') {
+let reporterArg = process.argv.indexOf('--reporter')
+if (reporterArg >= 0) {
   truffleOptions['mocha'] = {
-    reporter: '/Users/nlv19703/Library/Application Support/IntelliJIdea2017.1/NodeJS/js/mocha-intellij/lib/mochaIntellijReporter.js'
+    reporter: process.argv[reporterArg + 1]
   }
 }
 
