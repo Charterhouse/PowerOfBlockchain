@@ -1,6 +1,6 @@
 const contract = require('truffle-contract')
 
-const contractNames = [ /* Add the names of your contracts here */ ]
+const contractNames = [ 'DQuestions' ]
 
 let contracts = {}
 contractNames.forEach(function (name) {
