@@ -1,24 +1,31 @@
 import React from 'react'
-import { Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap'
+import { Alert, Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap'
 import Button from 'react-bootstrap-button-loader'
-import { DQuestions } from '../../contracts'
+import { DQuestions, getWeb3 } from '../../contracts'
 
 class ShowQuestion extends React.Component {
 
   constructor (props) {
     super(props)
-    this.state = {question: '', guess: '', isLoading: false}
+    this.state = {
+      question: '',
+      guess: '',
+      isLoading: false,
+      alert: '',
+      alertStyle: ''
+    }
     this.handleChange = this.handleChange.bind(this)
+    this.id = Number(this.props.match.params.id)
     this.onSubmit = this.onSubmit.bind(this)
   }
 
   componentWillMount () {
-    this.retrieveQuestion(this.props.match.params.id)
+    this.retrieveQuestion()
   }
 
-  async retrieveQuestion (id) {
+  async retrieveQuestion () {
     const questions = await DQuestions.deployed()
-    const question = await questions.getQuestion(Number(id))
+    const question = await questions.getQuestion(this.id)
     this.setState({question: question})
   }
 
@@ -49,6 +56,7 @@ class ShowQuestion extends React.Component {
           </Col>
         </FormGroup>
       </Form>
+      { this.renderAlert() }
     </div>
   }
 
@@ -57,8 +65,33 @@ class ShowQuestion extends React.Component {
     this.setState({[target.name]: target.value})
   }
 
-  onSubmit () {
+  renderAlert () {
+    if (this.state.alert === '') {
+      return <div />
+    } else {
+      return <Alert bsStyle={this.state.alertStyle}>
+        { this.state.alert }
+      </Alert>
+    }
+  }
+
+  async onSubmit () {
     this.setState({ isLoading: true })
+    const questions = await DQuestions.deployed()
+    await questions.guess(this.id, this.state.guess)
+    const winner = await questions.getWinner(this.id)
+    if (winner === getWeb3().eth.accounts[0]) {
+      this.setState({
+        alert: 'You Won!',
+        alertStyle: 'success'
+      })
+    } else {
+      this.setState({
+        alert: 'Wrong guess, please try again!',
+        alertStyle: 'danger'
+      })
+    }
+    this.setState({ isLoading: false })
   }
 
   validFormInput () {
