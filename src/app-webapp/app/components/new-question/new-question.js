@@ -68,13 +68,19 @@ class NewQuestion extends React.Component {
     this.setState({ isLoading: true })
     const questions = await DQuestions.deployed()
     await questions.add(this.state.question, getWeb3().sha3(this.state.answer))
+    const questionId = (await questions.numberOfQuestions()) - 1
     this.setState({ isLoading: false })
+    this.props.history.push(`/questions/${questionId}`)
   }
 
   validFormInput () {
     return this.state.question !== '' && this.state.answer !== ''
   }
 
+}
+
+NewQuestion.propTypes = {
+  history: React.PropTypes.object
 }
 
 export default NewQuestion
