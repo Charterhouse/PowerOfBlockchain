@@ -1,6 +1,6 @@
 const contract = require('truffle-contract')
 
-const contractNames = [ 'ConvertLib', 'MetaCoin' ]
+const contractNames = [ /* Add the names of your contracts here */ ]
 
 let contracts = {}
 contractNames.forEach(function (name) {
