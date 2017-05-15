@@ -5,6 +5,6 @@ const ${CLASSNAME} = artifacts.require('${CLASSNAME}.sol')
 const Web3 = require('web3')
 const web3 = new Web3()
 
-contract(${CLASSNAME}, function (accounts) {
+contract('${CLASSNAME}', function (accounts) {
 
 })
