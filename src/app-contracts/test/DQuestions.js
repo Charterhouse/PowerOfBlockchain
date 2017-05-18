@@ -42,12 +42,18 @@ contract('DQuestions', function (accounts) {
 
     context('when guessing the right answer', function () {
       let winner = accounts[1]
+      let loser = accounts[2]
 
       beforeEach(async function () {
         await questions.guess(0, answer, { from: winner })
       })
 
       it('selects the winner', async function () {
+        expect(await questions.getWinner(0)).to.equal(winner)
+      })
+
+      it('selects a winner only once', async function () {
+        await questions.guess(0, answer, { from: loser })
         expect(await questions.getWinner(0)).to.equal(winner)
       })
     })
