@@ -3,6 +3,7 @@ import {
   Form, FormGroup, ControlLabel, FormControl, Col
 } from 'react-bootstrap'
 import Button from 'react-bootstrap-button-loader'
+import { DQuestions, getWeb3 } from '../../contracts'
 
 class NewQuestion extends React.Component {
 
@@ -63,8 +64,11 @@ class NewQuestion extends React.Component {
     this.setState({ [target.name]: target.value })
   }
 
-  onSubmit () {
+  async onSubmit () {
     this.setState({ isLoading: true })
+    const questions = await DQuestions.deployed()
+    await questions.add(this.state.question, getWeb3().sha3(this.state.answer))
+    this.setState({ isLoading: false })
   }
 
   validFormInput () {
