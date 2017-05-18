@@ -19,8 +19,10 @@ contract('DQuestions', function () {
   })
 
   context('when a question is added', function () {
+    const question = 'Who is Santoshi Nakamoto?'
+
     beforeEach(async function () {
-      await questions.add('Who is Santoshi Nakamoto?')
+      await questions.add(question)
     })
 
     it('increments the number of questions', async function () {
