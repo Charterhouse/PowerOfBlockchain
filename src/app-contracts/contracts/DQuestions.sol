@@ -24,7 +24,10 @@ contract DQuestions {
     }
 
     function guess(uint i, string guess) {
-        if (winners[i] == 0 && sha3(guess) == answers[i]) {
+        bool noWinnerYet = (winners[i] == 0);
+        bool rightAnswer = (sha3(guess) == answers[i]);
+
+        if (noWinnerYet && rightAnswer) {
             winners[i] = msg.sender;
         }
     }
