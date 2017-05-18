@@ -17,4 +17,15 @@ contract('DQuestions', function () {
     let numberOfQuestions = await questions.numberOfQuestions()
     expect(numberOfQuestions.toNumber()).to.equal(0)
   })
+
+  context('when a question is added', function () {
+    beforeEach(async function () {
+      await questions.add('Who is Santoshi Nakamoto?')
+    })
+
+    it('increments the number of questions', async function () {
+      let numberOfQuestions = await questions.numberOfQuestions()
+      expect(numberOfQuestions.toNumber()).to.equal(1)
+    })
+  })
 })
