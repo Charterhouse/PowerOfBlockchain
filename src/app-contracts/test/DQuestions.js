@@ -20,9 +20,10 @@ contract('DQuestions', function () {
 
   context('when a question is added', function () {
     const question = 'Who is Santoshi Nakamoto?'
+    const answer = 'Knobody knows.'
 
     beforeEach(async function () {
-      await questions.add(question)
+      await questions.add(question, answer)
     })
 
     it('increments the number of questions', async function () {
@@ -32,6 +33,10 @@ contract('DQuestions', function () {
 
     it('retrieves the question', async function () {
       expect(await questions.getQuestion(0)).to.equal(question)
+    })
+
+    it('knows the answer', async function () {
+      expect(await questions.getAnswer(0)).to.equal(answer)
     })
   })
 })
