@@ -2,13 +2,13 @@ pragma solidity ^0.4.6;
 
 contract DQuestions {
     string[] questions;
-    string[] answers;
+    bytes32[] answers;
 
     function numberOfQuestions() constant returns (uint) {
         return questions.length;
     }
 
-    function add(string question, string answer) {
+    function add(string question, bytes32 answer) {
         questions.push(question);
         answers.push(answer);
     }
@@ -17,7 +17,7 @@ contract DQuestions {
         return questions[i];
     }
 
-    function getAnswer(uint i) constant returns (string) {
+    function getAnswer(uint i) constant returns (bytes32) {
         return answers[i];
     }
 }
