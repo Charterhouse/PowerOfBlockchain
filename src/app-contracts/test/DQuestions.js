@@ -3,7 +3,7 @@
 const expect = require('chai').expect
 const DQuestions = artifacts.require('DQuestions.sol')
 
-contract('DQuestions', function () {
+contract('DQuestions', function (accounts) {
   let questions
 
   beforeEach(async function () {
@@ -38,6 +38,18 @@ contract('DQuestions', function () {
 
     it('knows about the answer', async function () {
       expect(await questions.getAnswer(0)).to.equal(web3.sha3(answer))
+    })
+
+    context('when guessing the right answer', function () {
+      let winner = accounts[1]
+
+      beforeEach(async function () {
+        await questions.guess(0, answer, { from: winner })
+      })
+
+      it('selects the winner', async function () {
+        expect(await questions.getWinner(0)).to.equal(winner)
+      })
     })
   })
 })
