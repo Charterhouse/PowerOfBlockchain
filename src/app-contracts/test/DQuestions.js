@@ -29,5 +29,9 @@ contract('DQuestions', function () {
       let numberOfQuestions = await questions.numberOfQuestions()
       expect(numberOfQuestions.toNumber()).to.equal(1)
     })
+
+    it('retrieves the question', async function () {
+      expect(await questions.getQuestion(0)).to.equal(question)
+    })
   })
 })
