@@ -26,6 +26,18 @@ If you want to run this game, after cloning this repo please do the following:
 
 Now (using Chrome) browse to http://localhost:8080 and you should see the game interface.
 
+
+Running Our Deployed ÐQuestions
+-------------------------------
+If deploying this is too much for you, we got your back as well. We deployed a version of this Ðapp to the Rinkeby test network. Still a few steps that you need to go through:
+
+1. Install the Chrome extensions [MetaMask](https://metamask.io) and open it to go through initial setup. Then choose the 'Rinkeby Test Network' in the pulldown.
+2. Take note of you Rinkeby account address and use it to get some Rinkeby Ether in the faucet, which you can find on https://www.rinkeby.io.
+3. Open our deployed [ÐQuestions](https://charterhouse.github.io/NextBuild2017) and have fun!
+
+Please note that transactions may take more than 10 seconds to come through, so be patient with the spinners on the buttons...
+
+
 <hr />
 <sup>1</sup> The money is in fact just a number of crypto-tokens, which can represent any physical good(ie)s. So if you're lucky we may actually provide some of those goodies...
 
