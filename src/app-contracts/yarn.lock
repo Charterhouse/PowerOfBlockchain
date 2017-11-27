@@ -676,6 +676,10 @@ better-assert@~1.0.0:
   version "2.0.7"
   resolved "git+https://github.com/debris/bignumber.js#94d7146671b9719e00a09c29b01a691bc85048c2"
 
+"bignumber.js@git+https://github.com/debris/bignumber.js.git#master":
+  version "2.0.7"
+  resolved "git+https://github.com/debris/bignumber.js.git#c7a38de919ed75e6fb6ba38051986e294b328df9"
+
 bignumber.js@~2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-2.1.4.tgz#29b3bb693dbb238e88b72eac2fb89650888b2d59"
@@ -5522,7 +5526,16 @@ web3-provider-engine@~8.1.0:
     xhr "^2.2.0"
     xtend "^4.0.1"
 
-web3@^0.16.0, web3@^0.18.0, web3@^0.18.2, web3@~0.16.0:
+web3@^0.16.0, web3@~0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/web3/-/web3-0.16.0.tgz#a4554175cd462943035b1f1d39432f741c6b6019"
+  dependencies:
+    bignumber.js "git+https://github.com/debris/bignumber.js#master"
+    crypto-js "^3.1.4"
+    utf8 "^2.1.1"
+    xmlhttprequest "*"
+
+web3@^0.18.0, web3@^0.18.2:
   version "0.18.2"
   resolved "https://registry.yarnpkg.com/web3/-/web3-0.18.2.tgz#61b1a6edf5056820e22e1ef082f54c279f4bf758"
   dependencies:
