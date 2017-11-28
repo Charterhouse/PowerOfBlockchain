@@ -1,0 +1,90 @@
+From d8be228ae4036ea9c1c42bbe9cdc8c942b1f53f0 Mon Sep 17 00:00:00 2001
+From: "Spanbroek, Mark" <mark@spanbroek.net>
+Date: Mon, 15 May 2017 14:27:11 +0200
+Subject: [PATCH] Add an answer for a question
+
+---
+ .../app/components/show-question/show-question.js  | 51 +++++++++++++++++++---
+ 1 file changed, 46 insertions(+), 5 deletions(-)
+
+diff --git a/src/app-webapp/app/components/show-question/show-question.js b/src/app-webapp/app/components/show-question/show-question.js
+index 839cb73..658bc5f 100644
+--- a/src/app-webapp/app/components/show-question/show-question.js
++++ b/src/app-webapp/app/components/show-question/show-question.js
+@@ -1,27 +1,68 @@
+ import React from 'react'
++import { Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap'
++import Button from 'react-bootstrap-button-loader'
+ import { DQuestions } from '../../contracts'
+ 
+ class ShowQuestion extends React.Component {
+ 
+   constructor (props) {
+     super(props)
+-    this.state = { question: '' }
++    this.state = {question: '', guess: '', isLoading: false}
++    this.handleChange = this.handleChange.bind(this)
++    this.onSubmit = this.onSubmit.bind(this)
+   }
+ 
+   componentWillMount () {
+     this.retrieveQuestion(this.props.match.params.id)
+   }
+ 
++  async retrieveQuestion (id) {
++    const questions = await DQuestions.deployed()
++    const question = await questions.getQuestion(Number(id))
++    this.setState({question: question})
++  }
++
+   render () {
+     return <div className='show-question'>
+       <h2>{ this.state.question }</h2>
++      <Form horizontal>
++        <FormGroup>
++          <Col sm={2} componentClass={ControlLabel}>Take a guess:</Col>
++          <Col sm={10}>
++            <FormControl
++              type='text'
++              name='guess'
++              value={this.state.guess}
++              placeholder='Enter your answer...'
++              onChange={this.handleChange}
++            />
++          </Col>
++        </FormGroup>
++        <FormGroup>
++          <Col smOffset={2} sm={10}>
++            <Button
++              bsStyle='primary'
++              bsSize='large'
++              loading={this.state.isLoading}
++              disabled={!this.validFormInput()}
++              onClick={this.onSubmit}>Check My Answer</Button>
++          </Col>
++        </FormGroup>
++      </Form>
+     </div>
+   }
+ 
+-  async retrieveQuestion (id) {
+-    const questions = await DQuestions.deployed()
+-    const question = await questions.getQuestion(Number(id))
+-    this.setState({ question: question })
++  handleChange (event) {
++    let target = event.target
++    this.setState({[target.name]: target.value})
++  }
++
++  onSubmit () {
++    this.setState({ isLoading: true })
++  }
++
++  validFormInput () {
++    return this.state.guess !== ''
+   }
+ }
+ 
+-- 
+2.15.0
+

@@ -1,0 +1,110 @@
+From fd95126a26074bb0b02abb537d932b14fc6746ed Mon Sep 17 00:00:00 2001
+From: "Spanbroek, Mark" <mark@spanbroek.net>
+Date: Mon, 15 May 2017 15:25:43 +0200
+Subject: [PATCH] Submit guess and show whether you've won or not.
+
+---
+ .../app/components/show-question/show-question.css |  4 ++
+ .../app/components/show-question/show-question.js  | 47 ++++++++++++++++++----
+ 2 files changed, 44 insertions(+), 7 deletions(-)
+ create mode 100644 src/app-webapp/app/components/show-question/show-question.css
+
+diff --git a/src/app-webapp/app/components/show-question/show-question.css b/src/app-webapp/app/components/show-question/show-question.css
+new file mode 100644
+index 0000000..90eb71f
+--- /dev/null
++++ b/src/app-webapp/app/components/show-question/show-question.css
+@@ -0,0 +1,4 @@
++.alert {
++  margin-top: 1em;
++  margin-bottom: 1em;
++}
+\ No newline at end of file
+diff --git a/src/app-webapp/app/components/show-question/show-question.js b/src/app-webapp/app/components/show-question/show-question.js
+index 658bc5f..43b9a1f 100644
+--- a/src/app-webapp/app/components/show-question/show-question.js
++++ b/src/app-webapp/app/components/show-question/show-question.js
+@@ -1,24 +1,31 @@
+ import React from 'react'
+-import { Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap'
++import { Alert, Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap'
+ import Button from 'react-bootstrap-button-loader'
+-import { DQuestions } from '../../contracts'
++import { DQuestions, getWeb3 } from '../../contracts'
+ 
+ class ShowQuestion extends React.Component {
+ 
+   constructor (props) {
+     super(props)
+-    this.state = {question: '', guess: '', isLoading: false}
++    this.state = {
++      question: '',
++      guess: '',
++      isLoading: false,
++      alert: '',
++      alertStyle: ''
++    }
+     this.handleChange = this.handleChange.bind(this)
++    this.id = Number(this.props.match.params.id)
+     this.onSubmit = this.onSubmit.bind(this)
+   }
+ 
+   componentWillMount () {
+-    this.retrieveQuestion(this.props.match.params.id)
++    this.retrieveQuestion()
+   }
+ 
+-  async retrieveQuestion (id) {
++  async retrieveQuestion () {
+     const questions = await DQuestions.deployed()
+-    const question = await questions.getQuestion(Number(id))
++    const question = await questions.getQuestion(this.id)
+     this.setState({question: question})
+   }
+ 
+@@ -49,6 +56,7 @@ class ShowQuestion extends React.Component {
+           </Col>
+         </FormGroup>
+       </Form>
++      { this.renderAlert() }
+     </div>
+   }
+ 
+@@ -57,8 +65,33 @@ class ShowQuestion extends React.Component {
+     this.setState({[target.name]: target.value})
+   }
+ 
+-  onSubmit () {
++  renderAlert () {
++    if (this.state.alert === '') {
++      return <div />
++    } else {
++      return <Alert bsStyle={this.state.alertStyle}>
++        { this.state.alert }
++      </Alert>
++    }
++  }
++
++  async onSubmit () {
+     this.setState({ isLoading: true })
++    const questions = await DQuestions.deployed()
++    await questions.guess(this.id, this.state.guess)
++    const winner = await questions.getWinner(this.id)
++    if (winner === getWeb3().eth.accounts[0]) {
++      this.setState({
++        alert: 'You Won!',
++        alertStyle: 'success'
++      })
++    } else {
++      this.setState({
++        alert: 'Wrong guess, please try again!',
++        alertStyle: 'danger'
++      })
++    }
++    this.setState({ isLoading: false })
+   }
+ 
+   validFormInput () {
+-- 
+2.15.0
+
