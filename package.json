@@ -2,7 +2,7 @@
   "name": "truffle-create-react-app",
   "version": "1.0.0",
   "license": "MIT",
-  "scripts": {    
+  "scripts": {
     "test": "cd web-app && yarn test",
     "lint": "standard | snazzy",
     "lint-fix": "standard --fix --verbose | snazzy"
@@ -28,6 +28,8 @@
   },
   "devDependencies": {
     "babel-eslint": "8.0.2",
+    "chai": "^4.1.2",
+    "dirty-chai": "^2.0.1",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3"
   }
