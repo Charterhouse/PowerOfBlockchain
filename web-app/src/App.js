@@ -1,8 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Home } from 'pages/home'
-import { Accounts } from 'pages/accounts'
-import { DApp } from 'pages/dapp'
 import { Web3 } from 'components/web3'
 import { Col } from 'react-bootstrap'
 import { NewQuestion } from 'pages/new'
@@ -27,8 +25,6 @@ export default () =>
               <h1><span>ÐQuestions</span></h1>
               <Route path='/new' render={routeProps => renderComponent(NewQuestion, routeProps, web3Props)} />
               <Route path='/' exact component={Home} />
-              <Route path='/dapp' render={routeProps => renderComponent(DApp, routeProps, web3Props)} />
-              <Route path='/accounts' render={routeProps => renderComponent(Accounts, routeProps, web3Props)} />
             </Col>
           </div>
         )
