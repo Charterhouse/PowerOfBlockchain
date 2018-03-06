@@ -1,43 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div
-  style={
-    Object {
-      "padding": "20px",
-    }
-  }
->
-  <h1>
-    Home
-  </h1>
+<div>
   <p>
-    Note that Web3 is already loaded.
+    Welcome to the Ðecentralized version of 500 Questions!
   </p>
-  <div
-    style={
-      Object {
-        "marginTop": "20px",
-      }
-    }
+  <button
+    className="btn-block btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
   >
-    <a
-      href="/dapp"
-      onClick={[Function]}
-    >
-      My DApp
-    </a>
-    <a
-      href="/accounts"
-      onClick={[Function]}
-      style={
-        Object {
-          "marginLeft": "20px",
-        }
-      }
-    >
-      My Accounts
-    </a>
-  </div>
+     
+    Start New Question
+  </button>
 </div>
 `;

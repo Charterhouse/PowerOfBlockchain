@@ -3,42 +3,26 @@
 exports[`renders correctly 1`] = `
 <div>
   <div
-    style={
-      Object {
-        "padding": "20px",
-      }
-    }
+    className="col-sm-10 col-sm-offset-1"
   >
     <h1>
-      Home
+      <span>
+        ÐQuestions
+      </span>
     </h1>
-    <p>
-      Note that Web3 is already loaded.
-    </p>
-    <div
-      style={
-        Object {
-          "marginTop": "20px",
-        }
-      }
-    >
-      <a
-        href="/dapp"
+    <div>
+      <p>
+        Welcome to the Ðecentralized version of 500 Questions!
+      </p>
+      <button
+        className="btn-block btn btn-primary"
+        disabled={false}
         onClick={[Function]}
+        type="button"
       >
-        My DApp
-      </a>
-      <a
-        href="/accounts"
-        onClick={[Function]}
-        style={
-          Object {
-            "marginLeft": "20px",
-          }
-        }
-      >
-        My Accounts
-      </a>
+         
+        Start New Question
+      </button>
     </div>
   </div>
 </div>
