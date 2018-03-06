@@ -16,9 +16,10 @@ contract('DQuestions', function () {
 
   context('when adding a question', function () {
     const question = 'Who is Satoshi Nakamoto?'
+    const answer = 'Nobody knows'
 
     beforeEach(async function () {
-      await questions.add(question)
+      await questions.add(question, answer)
     })
 
     it('increases the number of questions', async function () {
@@ -28,6 +29,10 @@ contract('DQuestions', function () {
 
     it('can retrieve the added question', async function () {
       expect(await questions.getQuestion(0)).to.equal(question)
+    })
+
+    it('knows the answer', async function () {
+      expect(await questions.getAnswer(0)).to.equal(answer)
     })
   })
 })
