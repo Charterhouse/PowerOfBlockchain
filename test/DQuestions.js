@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+/* global web3 */
 const expect = require('chai').expect
 const DQuestions = artifacts.require('DQuestions.sol')
 
@@ -19,7 +20,7 @@ contract('DQuestions', function () {
     const answer = 'Nobody knows'
 
     beforeEach(async function () {
-      await questions.add(question, answer)
+      await questions.add(question, web3.sha3(answer))
     })
 
     it('increases the number of questions', async function () {
@@ -31,8 +32,8 @@ contract('DQuestions', function () {
       expect(await questions.getQuestion(0)).to.equal(question)
     })
 
-    it('knows the answer', async function () {
-      expect(await questions.getAnswer(0)).to.equal(answer)
+    it('knows about the answer', async function () {
+      expect(await questions.getAnswer(0)).to.equal(web3.sha3(answer))
     })
   })
 })
