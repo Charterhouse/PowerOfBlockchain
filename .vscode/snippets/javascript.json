@@ -1,0 +1,38 @@
+{
+    "Mocha describe": {
+        "prefix": "md",
+        "body": [
+            "describe('$1', function () {",
+            "\t$0",
+            "})"
+        ],
+        "description": "Mocha describe"
+    },
+    "Mocha context": {
+        "prefix": "mc",
+        "body": [
+            "context('$1', function () {",
+            "\t$0",
+            "})"
+        ],
+        "description": "Mocha context"
+    },
+    "Mocha beforeEach": {
+        "prefix": "mb",
+        "body": [
+            "beforeEach(async function () {",
+            "\t$0",
+            "})"
+        ],
+        "description": "Mocha beforeEach"
+    },
+    "Mocha it": {
+        "prefix": "mit",
+        "body": [
+            "it('$1', async function () {",
+            "\t$0",
+            "})"
+        ],
+        "description": "Mocha test"
+    }
+}
