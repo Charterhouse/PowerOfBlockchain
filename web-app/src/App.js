@@ -4,6 +4,7 @@ import { Home } from 'pages/home'
 import { Web3 } from 'components/web3'
 import { Col } from 'react-bootstrap'
 import { NewQuestion } from 'pages/new'
+import { ShowQuestion } from 'pages/show'
 import './App.css'
 
 const renderComponent = (Component, routeProps, web3Props) => (
@@ -24,6 +25,7 @@ export default () =>
             <Col sm={10} smOffset={1}>
               <h1><span>ÐQuestions</span></h1>
               <Route path='/new' render={routeProps => renderComponent(NewQuestion, routeProps, web3Props)} />
+              <Route path='/questions/:id' render={routeProps => renderComponent(ShowQuestion, routeProps, web3Props)} />
               <Route path='/' exact component={Home} />
             </Col>
           </div>

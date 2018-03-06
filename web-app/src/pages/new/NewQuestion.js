@@ -64,11 +64,13 @@ class NewQuestion extends React.Component {
 
   async onSubmit () {
     this.setState({ isLoading: true })
-    const { accounts, contract, web3 } = this.props
+    const { accounts, contract, web3, history } = this.props
     const { question, answer } = this.state
     const options = { from: accounts[0], gas: 600000 }
     await contract.add(question, web3.sha3(answer), options)
+    const questionId = (await contract.numberOfQuestions()) - 1
     this.setState({ isLoading: false })
+    history.push(`/questions/${questionId}`)
   }
 
   validFormInput () {
