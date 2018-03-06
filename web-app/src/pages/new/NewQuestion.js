@@ -62,8 +62,13 @@ class NewQuestion extends React.Component {
     this.setState({ [target.name]: target.value })
   }
 
-  onSubmit () {
+  async onSubmit () {
     this.setState({ isLoading: true })
+    const { accounts, contract, web3 } = this.props
+    const { question, answer } = this.state
+    const options = { from: accounts[0], gas: 600000 }
+    await contract.add(question, web3.sha3(answer), options)
+    this.setState({ isLoading: false })
   }
 
   validFormInput () {
