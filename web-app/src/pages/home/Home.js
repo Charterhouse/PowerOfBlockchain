@@ -1,12 +1,13 @@
 import React from 'react'
-import { Wrapper } from 'components/wrapper'
-import { AppNavigation } from 'components/navigation'
+import Button from 'react-bootstrap-button-loader'
 
-const Home = ({ location }) =>
-  <Wrapper>
-    <h1>Home</h1>
-    <p>Note that Web3 is already loaded.</p>
-    <AppNavigation location={location} />
-  </Wrapper>
+const Home = ({ history }) =>
+  <div>
+    <p>Welcome to the Ðecentralized version of 500 Questions!</p>
+    <Button
+      bsStyle='primary'
+      className='btn-block'
+      onClick={() => history.push('/new')}>Start New Question</Button>
+  </div>
 
 export { Home }
