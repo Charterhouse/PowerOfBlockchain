@@ -1,12 +1,19 @@
 import React from 'react'
-import { Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap'
+import { Alert, Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap'
 import Button from 'react-bootstrap-button-loader'
 
 class ShowQuestion extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {question: '', guess: '', isLoading: false}
+    this.state = {
+      question: '',
+      guess: '',
+      isLoading: false,
+      alert: '',
+      alertStyle: ''
+    }
     this.handleChange = this.handleChange.bind(this)
+    this.id = Number(this.props.match.params.id)
     this.onSubmit = this.onSubmit.bind(this)
   }
 
@@ -47,7 +54,18 @@ class ShowQuestion extends React.Component {
           </Col>
         </FormGroup>
       </Form>
+      { this.renderAlert() }
     </div>
+  }
+
+  renderAlert () {
+    if (this.state.alert === '') {
+      return <div />
+    } else {
+      return <Alert bsStyle={this.state.alertStyle}>
+        { this.state.alert }
+      </Alert>
+    }
   }
 
   handleChange (event) {
@@ -55,8 +73,23 @@ class ShowQuestion extends React.Component {
     this.setState({[target.name]: target.value})
   }
 
-  onSubmit () {
+  async onSubmit () {
     this.setState({ isLoading: true })
+    const { contract, accounts: [me] } = this.props
+    await contract.guess(this.id, this.state.guess, { from: me })
+    const winner = await contract.getWinner(this.id)
+    if (winner === me) {
+      this.setState({
+        alert: 'You Won!',
+        alertStyle: 'success'
+      })
+    } else {
+      this.setState({
+        alert: 'Wrong guess, please try again!',
+        alertStyle: 'danger'
+      })
+    }
+    this.setState({ isLoading: false })
   }
 
   validFormInput () {
