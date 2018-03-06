@@ -24,7 +24,9 @@ contract DQuestions {
     }
 
     function guess(uint index, string answer) public {
-        winners[index] = msg.sender;
+        if (keccak256(answer) == answers[index]) {
+            winners[index] = msg.sender;
+        }
     }
 
     function getWinner(uint index) public view returns (address) {

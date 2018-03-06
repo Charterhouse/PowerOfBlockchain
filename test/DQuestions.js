@@ -47,5 +47,18 @@ contract('DQuestions', function (accounts) {
         expect(await questions.getWinner(0)).to.equal(winner)
       })
     })
+
+    context('when guessing a wrong answer', function () {
+      const loser = accounts[2]
+
+      beforeEach(async function () {
+        await questions.guess(0, 'wrong answer', { from: loser })
+      })
+
+      it('does not select a winner', async function () {
+        const person = await questions.getWinner(0)
+        expect(web3.toDecimal(person)).to.equal(0)
+      })
+    })
   })
 })
