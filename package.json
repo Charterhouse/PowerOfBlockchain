@@ -30,6 +30,7 @@
     "babel-eslint": "8.0.2",
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1",
+    "ganache-cli": "^6.1.0",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3"
   },
