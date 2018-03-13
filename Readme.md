@@ -2,6 +2,8 @@ The Power of Blockchain
 =======================
 *Session given at [NextBuild 2017](http://nextbuild.nl), [XPDays 2017](http://www.xpdaysbenelux.nl) and [AppDevCon 2018](http://appdevcon.nl).*
 
+[![Build Status](https://travis-ci.org/Charterhouse/PowerOfBlockchain.svg?branch=master)](https://travis-ci.org/Charterhouse/PowerOfBlockchain)
+
 To show you the power of Blockchain we are going to demonstrate how you can make an application that can be trusted by anyone. We will create a game where *cheating is impossible*. The game is a live guessing game. Anyone can set a challenge consisting of a question, its answer, and prize money. The first person to give the correct answer wins that challenge, and takes away the prize money.
 
 The game is called ÐQuestions<sup>1</sup>. It consists of a web based UI, and a smart contract on the Ethereum blockchain where you would normally find the backend. This smart contract ensures that *not even us* can cheat the game.
