@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "test": "cd web-app && yarn test",
+    "test": "truffle test --network=testing && cd web-app && yarn test",
     "lint": "standard | snazzy",
     "lint-fix": "standard --fix --verbose | snazzy"
   },
