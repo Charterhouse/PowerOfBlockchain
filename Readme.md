@@ -20,7 +20,7 @@ If you want to run this game, after cloning this repo please do the following:
 1. Run `yarn install` on the root level
 2. Run `yarn truffle develop` to start the Truffle development console
     - In the development console, run `migrate` to deploy the smart contracts
-3. In the folder `web-app`, run `yarn install` followed by `yarn start` to run the web server.
+3. In the folder `web-app`, run `yarn start` to run the web server.
 4. Install the browser extension [MetaMask](https://metamask.io) and open it.
     -  When prompted, choose the option to "Import existing DEN"
     -  Use the phrase `candy maple cake sugar pudding cream honey rich smooth crumble sweet treat`. Important: only use this on a local Truffle network, never on a production Ethereum network or you will surely lose funds.

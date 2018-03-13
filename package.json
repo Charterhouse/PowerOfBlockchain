@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "postinstall": "cd web-app && yarn install",
     "test": "truffle test --network=testing && cd web-app && yarn test",
     "lint": "standard | snazzy",
     "lint-fix": "standard --fix --verbose | snazzy"
