@@ -32,5 +32,8 @@
     "dirty-chai": "^2.0.1",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "truffle": "^4.1.3"
   }
 }
