@@ -76,7 +76,8 @@ class ShowQuestion extends React.Component {
   async onSubmit () {
     this.setState({ isLoading: true })
     const { contract, accounts: [me] } = this.props
-    await contract.guess(this.id, this.state.guess, { from: me })
+    const options = { from: me, gas: 600000 }
+    await contract.guess(this.id, this.state.guess, options)
     const winner = await contract.getWinner(this.id)
     if (winner === me) {
       this.setState({
