@@ -1,5 +1,5 @@
-const DQuestions = artifacts.require('DQuestions.sol')
+const Tournament = artifacts.require('Tournament.sol')
 
 module.exports = function (deployer) {
-  deployer.deploy(DQuestions)
+  deployer.deploy(Tournament)
 }

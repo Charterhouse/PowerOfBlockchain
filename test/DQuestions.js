@@ -1,13 +1,13 @@
 /* eslint-env mocha */
 /* global web3 */
 const expect = require('chai').expect
-const DQuestions = artifacts.require('DQuestions.sol')
+const Tournament = artifacts.require('Tournament.sol')
 
-contract('DQuestions', function (accounts) {
+contract('Tournament', function (accounts) {
   let questions
 
   beforeEach(async function () {
-    questions = await DQuestions.new()
+    questions = await Tournament.new()
   })
 
   it('has no questions initially', async function () {
