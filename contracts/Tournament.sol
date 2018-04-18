@@ -3,9 +3,6 @@ pragma solidity ^0.4.19;
 import "./VoteItems.sol";
 
 contract Tournament {
-    string[] questions;
-    bytes32[] answers;
-    address[] winners;
     VoteItems voteItems;
     address public creator;
 
