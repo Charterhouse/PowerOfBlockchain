@@ -40,4 +40,9 @@ contract Tournament {
         return c;
     }
 
+    function CalculateResults() public {
+        // use https://github.com/numerai/contract ???
+        ResultsCalculated();
+    }
+
 }
