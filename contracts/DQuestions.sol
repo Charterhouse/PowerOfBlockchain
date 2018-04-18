@@ -1,9 +1,15 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.19;
+
+import "./VoteItems.sol";
 
 contract DQuestions {
     string[] questions;
     bytes32[] answers;
     address[] winners;
+    VoteItems voteItems;
+    function DQuestions() public {
+        createVoteItems();
+    }
 
     function numberOfQuestions() public view returns (uint) {
         return questions.length;
@@ -31,5 +37,18 @@ contract DQuestions {
 
     function getWinner(uint index) public view returns (address) {
         return winners[index];
+    }
+
+    function createVoteItems() private {
+        voteItems = new VoteItems();
+    }
+
+    function addItem(string item) public {
+        voteItems.add(item);
+    }
+
+    function GetNextItemIndex() public returns (uint) {
+        uint c =  voteItems.NextIndex();
+        return c;
     }
 }

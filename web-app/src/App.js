@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Home } from 'pages/home'
 import { Web3 } from 'components/web3'
 import { Col } from 'react-bootstrap'
-import { NewQuestion } from 'pages/new'
-import { ShowQuestion } from 'pages/show'
+import { NewEstimate } from 'pages/new'
+import { AddItem } from 'pages/items'
 import './App.css'
 
 const renderComponent = (Component, routeProps, web3Props) => (
@@ -23,9 +23,10 @@ export default () =>
         return (
           <div>
             <Col sm={10} smOffset={1}>
-              <h1><span>ÐQuestions</span></h1>
-              <Route path='/new' render={routeProps => renderComponent(NewQuestion, routeProps, web3Props)} />
-              <Route path='/questions/:id' render={routeProps => renderComponent(ShowQuestion, routeProps, web3Props)} />
+              <h1><span>Lot Estimates</span></h1>
+              <Route path='/vote/new' render={routeProps => renderComponent(NewEstimate, routeProps, web3Props)} />
+              <Route path='/vote/next/:lot_id' render={routeProps => renderComponent(NewEstimate, routeProps, web3Props)} />
+              <Route path='/items/new' render={routeProps => renderComponent(AddItem, routeProps, web3Props)} />
               <Route path='/' exact component={Home} />
             </Col>
           </div>
