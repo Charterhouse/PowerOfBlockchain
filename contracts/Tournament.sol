@@ -12,7 +12,11 @@ contract Tournament {
     event Voted(); // an event informing about end of votes
     event ResultsCalculated(); // inform clients that results are calculated
 
+    event Claimed(string name, uint balance);
+
     XCCToken public token;
+    mapping (address => string) nameOf;
+
     function Tournament(address XCCAddress) public {
         createVoteItems();
         creator = msg.sender;
@@ -47,6 +51,8 @@ contract Tournament {
 
     function claim(string name) public {
         address addr = msg.sender;
-        token.grantedTo(addr);
+        uint balance = token.grantedTo(addr);
+        nameOf[addr] = name;
+        Claimed(name, balance);
     }
 }

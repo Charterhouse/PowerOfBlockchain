@@ -24,10 +24,16 @@ contract XCCToken is MintableToken {
         return (msg.sender);
     }
 
-    function grantedTo(address recipient) public {
+    function grantedTo(address recipient) public canGrant() returns (uint) {
         uint amount = 777;
         totalSupply_ = totalSupply_ + amount;
         balances[recipient] += amount;
         Transfer(address(0), recipient, amount);
+        return balances[recipient];
+    }
+
+    modifier canGrant() {
+        require(balances[msg.sender] == 0);
+        _;
     }
 }
