@@ -17,13 +17,17 @@ contract XCCToken is MintableToken {
     function XCCToken() public {
         totalSupply_ = INITIAL_SUPPLY;
         balances[msg.sender] = INITIAL_SUPPLY;
-        Transfer(0x0, msg.sender, INITIAL_SUPPLY);
+        Transfer(address(0), msg.sender, INITIAL_SUPPLY);
     }
 
     function printOwner() public view returns (address) {
         return (msg.sender);
     }
 
-
-
+    function grantedTo(address recipient) public {
+        uint amount = 777;
+        totalSupply_ = totalSupply_ + amount;
+        balances[recipient] += amount;
+        Transfer(address(0), recipient, amount);
+    }
 }

@@ -1,6 +1,7 @@
 pragma solidity ^0.4.19;
 
 import "./VoteItems.sol";
+import "./XCCToken.sol";
 
 contract Tournament {
     VoteItems voteItems;
@@ -11,9 +12,11 @@ contract Tournament {
     event Voted(); // an event informing about end of votes
     event ResultsCalculated(); // inform clients that results are calculated
 
-    function Tournament() public {
+    XCCToken public token;
+    function Tournament(address XCCAddress) public {
         createVoteItems();
         creator = msg.sender;
+        token = XCCToken(XCCAddress);
     }
 
     function newRound() public {
@@ -43,6 +46,7 @@ contract Tournament {
     }
 
     function claim(string name) public {
-        msg.sender.transfer(1);
+        address addr = msg.sender;
+        token.grantedTo(addr);
     }
 }
