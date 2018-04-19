@@ -24,4 +24,6 @@ contract XCCToken is MintableToken {
         return (msg.sender);
     }
 
+
+
 }

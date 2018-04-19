@@ -42,4 +42,7 @@ contract Tournament {
         ResultsCalculated();
     }
 
+    function claim(string name) public {
+        msg.sender.transfer(1);
+    }
 }
