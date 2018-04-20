@@ -83,7 +83,13 @@ contract Tournament {
         calculateResults();
     }
 
-    
+    function isEstimationValid(uint estimatedValue_, uint realValue_) pure public returns (bool){
+        uint biggerValue = estimatedValue_ > realValue_ ? estimatedValue_ : realValue_;
+        uint smallerValue = estimatedValue_ <= realValue_ ? estimatedValue_ : realValue_;
+        
+        bool result = (biggerValue - smallerValue) < (realValue_/5);
+        return result;
+    }
 
     
 }

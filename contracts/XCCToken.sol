@@ -45,4 +45,11 @@ contract XCCToken is MintableToken {
         require(balanceOf(player) >= amount);
         _;
     }
+
+    function rewardStake(address player, uint amount) public {
+        require(stakePool > 0);
+        uint safeAmount = amount > stakePool ? amount : stakePool;
+        balances[player] += safeAmount;
+        stakePool -= safeAmount; 
+    }
 }
