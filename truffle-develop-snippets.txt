@@ -1,1 +1,3 @@
-accounts= web3.eth.accounts; Tournament.deployed().then( inst => {t = inst }); t.token().then(temp => {token = XCCToken.at(temp)})
+accounts= web3.eth.accounts
+Tournament.deployed().then( inst => {t = inst })
+t.token().then(temp => {token = XCCToken.at(temp)})

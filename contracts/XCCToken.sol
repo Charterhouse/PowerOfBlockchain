@@ -10,7 +10,7 @@ contract XCCToken is MintableToken {
     uint8 public constant decimals = 2; // solium-disable-line uppercase
 
     uint256 public constant INITIAL_SUPPLY = 10000 * (10 ** uint256(decimals));
-
+    uint stakePool;
   /**
    * @dev Constructor that gives msg.sender all of existing tokens.
    */
@@ -24,7 +24,11 @@ contract XCCToken is MintableToken {
         return (msg.sender);
     }
 
-    function grantedTo(address recipient) public canGrant() returns (uint) {
+    function grantedTo(address recipient) public  returns (uint) {
+        if(balanceOf(recipient) > 0) {
+            return balances[recipient];
+        }
+
         uint amount = 777;
         totalSupply_ = totalSupply_ + amount;
         balances[recipient] += amount;
@@ -32,8 +36,13 @@ contract XCCToken is MintableToken {
         return balances[recipient];
     }
 
-    modifier canGrant() {
-        require(balances[msg.sender] == 0);
+    function stake(address player, uint amount) public needsBalance(player,amount) {
+        balances[player] -= amount;
+        stakePool += amount; 
+    }
+
+    modifier needsBalance(address player, uint amount) {
+        require(balanceOf(player) >= amount);
         _;
     }
 }
