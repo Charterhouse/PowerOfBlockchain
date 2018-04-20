@@ -1,7 +1,7 @@
 pragma solidity ^0.4.19;
 
 import "./XCCToken.sol";
-
+// import "zeppelin-solidity/contracts/Ownership/OnlyOwner.sol";
 contract Tournament {
     address public creator;
 
@@ -14,45 +14,56 @@ contract Tournament {
 
     XCCToken public token;
     mapping (address => string) public nameOf;
-    mapping (address => Answer) public answer;
-    mapping (address => uint) public stake;
-    mapping (address => uint) public confidence;
-    mapping (address => uint) public estimatedValue;
+    mapping (address => uint) private userToEntry;
+    
+    address[] players;
+    uint[] public stake;
+    uint[] public confidence;
+    uint[] public estimatedValue;
 
 
+    bool private isEstimating;
+    uint private realValue;
+
+    uint private answerIndex;
+    
     struct Item {
         uint itemId;
         string name;
         uint realValue;
     }    
 
-    struct Answer {
-        uint itemId;
-        uint estimatedValue;
-    }
-
     Item[] public items;
 
     function Tournament(address XCCAddress) public {
-        createVoteItems();
         creator = msg.sender;
         token = XCCToken(XCCAddress);
         items.push(Item(5, "test1", 55));
+        isEstimating = true;
+        realValue = 42;
     }
 
 
     function submit(uint value_, uint stake_, uint confidence_) public {
         require(stake_ > 0);
+        require(stake_ <= token.balanceOf(msg.sender));
         require(confidence_ > 0);
+        require(isEstimating);
 
-        stake[msg.sender] = stake_;
-        confidence[msg.sender] = confidence_;
-        estimatedValue[msg.sender] = value_;
+        stake.push(stake_);
+        confidence.push(confidence_);
+        estimatedValue.push(value_);
+
+        userToEntry[msg.sender] = answerIndex; 
+        players[answerIndex] = msg.sender; 
+        answerIndex++;
         token.stake(msg.sender, stake_);
     }
 
-    function CalculateResults() public {
+    function calculateResults() public {
         // use https://github.com/numerai/contract ???
+
+        
         ResultsCalculated();
     }
 
@@ -67,18 +78,12 @@ contract Tournament {
         return nameOf[a];
     }
 
-    function getMyAnswer() public view returns (uint, uint){
-        Answer memory a = _getAnswer();
-        // return a;
-        return(a.estimatedValue, a.itemId);
-    }
-    function _getAnswer() private view returns (Answer){
-        Answer memory a = answer[msg.sender];
-        return a;
-        // return(a.estimatedValue, a.itemId);
+    function finishEstimationPhase() public {
+        isEstimating = false;
+        calculateResults();
     }
 
-    function closeEditing() public onlyOwner {
+    
 
-    }
+    
 }
