@@ -1,10 +1,8 @@
 pragma solidity ^0.4.19;
 
-import "./VoteItems.sol";
 import "./XCCToken.sol";
 
 contract Tournament {
-    VoteItems voteItems;
     address public creator;
 
     event BeginVote(); // an event to inform clients about the begging of voting.
@@ -21,15 +19,6 @@ contract Tournament {
     mapping (address => uint) public confidence;
     mapping (address => uint) public estimatedValue;
 
-
-    Submission[] submissions;
-
-    struct Submission {
-        // string 
-        // Answer answer;
-        uint[] stake;
-        // uint confidence;
-    }
 
     struct Item {
         uint itemId;
@@ -49,8 +38,6 @@ contract Tournament {
         creator = msg.sender;
         token = XCCToken(XCCAddress);
         items.push(Item(5, "test1", 55));
-        items.push(Item(6, "test2", 66));
-        items.push(Item(7, "test3", 77));
     }
 
 
@@ -62,36 +49,6 @@ contract Tournament {
         confidence[msg.sender] = confidence_;
         estimatedValue[msg.sender] = value_;
         token.stake(msg.sender, stake_);
-    }
-
-
-    function addAnswer(uint itemId, uint value) public {
-        // uint idx = submissions.push(Submission(a));
-        Answer memory answer1 = Answer(1,20);
-        Answer memory answer2 = Answer(itemId,value);
-        
-        answer[msg.sender] = answer2;
-    }
-
-    function newRound() public {
-        BeginVote();
-    }
-
-    function FinishRound() public {
-        Voted();
-    }
-
-    function createVoteItems() private {
-        voteItems = new VoteItems();
-    }
-
-    function addItem(string item) public {
-        voteItems.add(item);
-    }
-
-    function GetNextItemIndex() public returns (uint) {
-        uint c =  voteItems.NextIndex();
-        return c;
     }
 
     function CalculateResults() public {
@@ -119,5 +76,9 @@ contract Tournament {
         Answer memory a = answer[msg.sender];
         return a;
         // return(a.estimatedValue, a.itemId);
+    }
+
+    function closeEditing() public onlyOwner {
+
     }
 }
