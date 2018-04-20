@@ -15,7 +15,7 @@ contract Tournament {
     XCCToken public token;
     mapping (address => string) public nameOf;
     mapping (address => uint) private userToEntry;
-    
+
     address[] players;
     uint[] public stake;
     uint[] public confidence;
@@ -26,12 +26,12 @@ contract Tournament {
     uint private realValue;
 
     uint private answerIndex;
-    
+
     struct Item {
         uint itemId;
         string name;
         uint realValue;
-    }    
+    }
 
     Item[] public items;
 
@@ -54,8 +54,8 @@ contract Tournament {
         confidence.push(confidence_);
         estimatedValue.push(value_);
 
-        userToEntry[msg.sender] = answerIndex; 
-        players[answerIndex] = msg.sender; 
+        userToEntry[msg.sender] = answerIndex;
+        players[answerIndex] = msg.sender;
         answerIndex++;
         token.stake(msg.sender, stake_);
     }
@@ -63,7 +63,7 @@ contract Tournament {
     function calculateResults() public {
         // use https://github.com/numerai/contract ???
 
-        
+
         ResultsCalculated();
     }
 
@@ -83,13 +83,17 @@ contract Tournament {
         calculateResults();
     }
 
-    function isEstimationValid(uint estimatedValue_, uint realValue_) pure public returns (bool){
+    function APE1000(uint estimatedValue_, uint realValue_) pure public returns (uint){
         uint biggerValue = estimatedValue_ > realValue_ ? estimatedValue_ : realValue_;
         uint smallerValue = estimatedValue_ <= realValue_ ? estimatedValue_ : realValue_;
-        
-        bool result = (biggerValue - smallerValue) < (realValue_/5);
+        uint result = (1000 * (biggerValue - smallerValue)) / realValue_;
         return result;
     }
 
-    
+    function isEstimationValid(uint estimatedValue_, uint realValue_) pure public returns (bool){
+        bool result = (APE1000(estimatedValue_,realValue_) / 1000) < (1/5);
+        return result;
+    }
+
+
 }
