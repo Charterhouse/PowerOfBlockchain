@@ -1,5 +1,5 @@
 import initContract from 'truffle-contract'
-import contractDefinition from 'contracts/DQuestions.json'
+import contractDefinition from 'contracts/Tournament.json'
 
 export const getAccounts = web3 =>
   new Promise((resolve, reject) => {

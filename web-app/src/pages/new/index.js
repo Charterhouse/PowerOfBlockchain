@@ -1,1 +1,1 @@
-export { NewQuestion } from './NewQuestion'
+export { NewEstimate } from './NewEstimate'
