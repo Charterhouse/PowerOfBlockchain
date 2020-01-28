@@ -1,1 +1,0 @@
-export { ShowQuestion } from './ShowQuestion'
