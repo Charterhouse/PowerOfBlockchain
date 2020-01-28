@@ -2,6 +2,7 @@
 /* global web3 */
 const expect = require('chai').expect
 const DQuestions = artifacts.require('DQuestions.sol')
+const { keccak256, hexToNumber } = web3.utils
 
 contract('DQuestions', function (accounts) {
   let questions
@@ -20,7 +21,7 @@ contract('DQuestions', function (accounts) {
     const answer = 'Nobody knows'
 
     beforeEach(async function () {
-      await questions.add(question, web3.sha3(answer))
+      await questions.add(question, keccak256(answer))
     })
 
     it('increases the number of questions', async function () {
@@ -33,7 +34,7 @@ contract('DQuestions', function (accounts) {
     })
 
     it('knows about the answer', async function () {
-      expect(await questions.getAnswer(0)).to.equal(web3.sha3(answer))
+      expect(await questions.getAnswer(0)).to.equal(keccak256(answer))
     })
 
     context('when guessing the right answer', function () {
@@ -63,7 +64,7 @@ contract('DQuestions', function (accounts) {
 
       it('does not select a winner', async function () {
         const person = await questions.getWinner(0)
-        expect(web3.toDecimal(person)).to.equal(0)
+        expect(hexToNumber(person)).to.equal(0)
       })
     })
   })
