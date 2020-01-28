@@ -33,6 +33,7 @@
     "dirty-chai": "^2.0.1",
     "ganache-cli": "^6.8.2",
     "snazzy": "^7.0.0",
+    "solc": "0.5.12",
     "standard": "^10.0.3"
   },
   "dependencies": {
