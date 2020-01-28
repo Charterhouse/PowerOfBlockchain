@@ -6,13 +6,15 @@ const useLocalWeb3Provider = () => {
   return new Web3(provider)
 }
 
-const resolveWeb3 = (resolve) => {
-  let { web3 } = window
-  const alreadyInjected = typeof web3 !== 'undefined' // i.e. Mist/Metamask
+const resolveWeb3 = async resolve => {
+  let { ethereum } = window
+  const alreadyInjected = typeof ethereum !== 'undefined' // i.e. Mist/Metamask
 
+  let web3
   if (alreadyInjected) {
     console.log('Injected web3 detected.')
-    web3 = new Web3(web3.currentProvider)
+    await ethereum.enable()
+    web3 = new Web3(ethereum)
   } else {
     console.log('No web3 instance injected, using Local web3.')
     web3 = useLocalWeb3Provider()
