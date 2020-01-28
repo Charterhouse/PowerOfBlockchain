@@ -1,4 +1,4 @@
-import initContract from 'truffle-contract'
+import initContract from '@truffle/contract'
 import contractDefinition from 'contracts/DQuestions.json'
 
 export const getAccounts = web3 =>
