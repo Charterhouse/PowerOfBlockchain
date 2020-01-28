@@ -24,8 +24,8 @@ If you want to run this game, after cloning this repo please do the following:
     - In the development console, run `migrate` to deploy the smart contracts
 3. In the folder `web-app`, run `yarn start` to run the web server.
 4. Install the browser extension [MetaMask](https://metamask.io) and open it.
-    -  When prompted, choose the option to "Import existing DEN"
-    -  Use the phrase `candy maple cake sugar pudding cream honey rich smooth crumble sweet treat`. Important: only use this on a local Truffle network, never on a production Ethereum network or you will surely lose funds.
+    -  When prompted, choose the option to "Import your existing wallet using a 12 word seed phrase"
+    -  Use the phrase `better loyal story silk beach symptom saddle wheat clock involve deer popular`. Important: only use this on a local Truffle network, never on a production Ethereum network or you will surely lose funds.
     - Switch from the Main Network to a Custom RPC network with url: `http://localhost:9545`
 
 Now browse to http://localhost:3000 and you should see the game interface.
