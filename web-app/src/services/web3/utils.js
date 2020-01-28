@@ -1,12 +1,7 @@
 import initContract from '@truffle/contract'
 import contractDefinition from 'contracts/DQuestions.json'
 
-export const getAccounts = web3 =>
-  new Promise((resolve, reject) => {
-    web3.eth.getAccounts(
-      (error, accounts) => (error ? reject(error) : resolve(accounts))
-    )
-  })
+export const getAccounts = async web3 => web3.eth.getAccounts()
 
 export const getContractInstance = async web3 => {
   const contract = initContract(contractDefinition)
