@@ -1,35 +1,38 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.5.12;
 
 contract DQuestions {
     string[] questions;
     bytes32[] answers;
     address[] winners;
 
-    function numberOfQuestions() public view returns (uint) {
+    function numberOfQuestions() public view returns (uint256) {
         return questions.length;
     }
 
-    function add(string question, bytes32 answer) public {
+    function add(string memory question, bytes32 answer) public {
         questions.push(question);
         answers.push(answer);
         winners.length++;
     }
 
-    function getQuestion(uint index) public view returns (string) {
+    function getQuestion(uint256 index) public view returns (string memory) {
         return questions[index];
     }
 
-    function getAnswer(uint index) public view returns (bytes32) {
+    function getAnswer(uint256 index) public view returns (bytes32) {
         return answers[index];
     }
 
-    function guess(uint index, string answer) public {
-        if (winners[index] == 0 && keccak256(answer) == answers[index]) {
+    function guess(uint256 index, string memory answer) public {
+        if (
+            winners[index] == address(0) &&
+            keccak256(abi.encodePacked(answer)) == answers[index]
+        ) {
             winners[index] = msg.sender;
         }
     }
 
-    function getWinner(uint index) public view returns (address) {
+    function getWinner(uint256 index) public view returns (address) {
         return winners[index];
     }
 }
