@@ -40,14 +40,22 @@ If you want to run this game, after cloning this repo please do the following:
 4. Install the browser extension [MetaMask](https://metamask.io) and open it.
     - When prompted, choose the option to "Import your existing wallet using a
       12 word seed phrase"
-    - Use the phrase `better loyal story silk beach symptom saddle wheat clock
-      involve deer popular`. Important: only use this on a local Truffle
-      network, never on a production Ethereum network or you will surely lose
-      funds.
+    - Enter the 12-word seed phrase that Truffle generated. It should be in the
+      output of Truffle from step 2 above. Important: only use this on a local
+      Truffle network, never on a production Ethereum network or you will surely
+      lose funds.
     - Switch from the Main Network to a Custom RPC network with url:
       `http://localhost:9545`
 
 Now browse to http://localhost:3000 and you should see the game interface.
+
+Please note that every time you restart `truffle develop`, you need to reset
+the MetaMask account. To do that, you open the MetaMask dialog and open its
+settings by clicking the top-right icon and choosing "Settings" from the menu.
+Then go to the "Advanced Settings" and click the "Reset Account" button. The
+reason for this is that MetaMask keeps track of what the transaction nonce
+should be, but Truffle starts from the beginning when you start it, so then
+the nonces don't match.
 
 <hr />
 
